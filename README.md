@@ -31,14 +31,9 @@ The hosted Screenshot Pop MCP endpoint is:
 https://screenshot-pop-az63vombma-ew.a.run.app/mcp
 ```
 
-MCP requires a bearer token:
-
-```txt
-Authorization: Bearer <MCP_FREE_BEARER_TOKEN or MCP_PRO_BEARER_TOKEN>
-```
-
-The included `.mcp.json` wires the hosted endpoint. The token is not stored in
-this repository.
+The included `.mcp.json` wires the hosted endpoint. Modern MCP clients discover
+Screenshot Pop auth from the endpoint, register automatically, and complete the
+OAuth flow in the browser with your Screenshot Pop workspace access code.
 
 ## Try It
 
