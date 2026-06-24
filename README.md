@@ -15,6 +15,8 @@ HTML node, component, card, panel, modal, or section and send
 captured node is rounded, also send its computed CSS `borderRadius` in pixels
 so the bento render keeps the same rounded corners. Full-page screenshots are a
 fallback: use `targetText` so OmniParser knows which detected UI region to crop.
+Agents should inspect bento sources visually before cropping. Do not fabricate
+UI, choose sections by DOM order, or force weak/random crops into a bento.
 
 ## Install
 
@@ -53,9 +55,11 @@ app, capture the real UI, call start_pr_visual_job for one screenshot or
 start_bento_visual_job for a 1-4 screenshot marketing bento. For bento, capture
 the relevant HTML node/component when possible and send captureKind:
 "html-node" plus borderRadius from computed CSS when the node is rounded. Use
-targetText only for full-page screenshots that need OmniParser targeting. Add a
-PR comment with the artifact URL and a one-sentence caption. Do not send source
-code, raw diffs, file contents, or changed file lists to Screenshot Pop.
+targetText only for full-page screenshots that need OmniParser targeting.
+Inspect bento source screenshots visually before cropping; do not fabricate UI
+or choose sections by DOM order. Add a PR comment with the artifact URL and a
+one-sentence caption. Do not send source code, raw diffs, file contents, or
+changed file lists to Screenshot Pop.
 ```
 
 ## Included Skill

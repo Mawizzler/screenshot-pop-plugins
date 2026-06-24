@@ -65,6 +65,20 @@ The agent should:
      In Playwright this can be a locator/element screenshot. In browser tools,
      crop to the DOM node or selected component. Do not feed previously
      annotated Screenshot Pop outputs back into the bento tool.
+   - For bento source selection, inspect the page visually before choosing what
+     to capture. Do not pick screenshots by DOM order, index guesses such as
+     "first section" or "nth section", random center crops, or hidden/offscreen
+     layout boxes. A good bento source is a real product moment with clear
+     visible UI, enough surrounding context, and no cookie banner, modal, broken
+     animation frame, or clipped headline covering the subject.
+   - If using public websites or competitor examples as source material, capture
+     only what is visible in the browser after visual inspection. Save broad
+     candidate screenshots first when needed, inspect them, then crop deliberately
+     to the useful product surface. Do not design substitute UI just because the
+     real page is hard to crop.
+   - If the available screenshots are weak, too shallow, blurry, obstructed, or
+     visually random, report that better source material is needed instead of
+     forcing a polished-looking fake.
    - When the captured node has rounded corners, read its computed CSS
      `border-radius` and pass the pixel value as `borderRadius` with that bento
      screenshot. This keeps node screenshots from rendering as sharp rectangles
