@@ -1,13 +1,13 @@
 ---
 name: pr-visual
-description: Use when Codex should turn a pull request, code diff, changelog item, completed UI change, docs update, or product release into one launch-ready product visual. The agent should infer the visible product change from PR context, run or inspect the app when practical, capture the real UI state, and create a grounded Screenshot Pop PNG/SVG for launch notes, PR comments, changelogs, docs, newsletters, support, or sales. Do not use for screenshot upload-only requests unless the user is explicitly providing a source image.
+description: Use when Codex should turn a pull request, code diff, changelog item, completed UI change, docs update, or product release into one launch-ready product visual or a marketing bento from 1-4 screenshots. The agent should infer the visible product change from PR context, run or inspect the app when practical, capture the real UI state, and create a grounded Screenshot Pop PNG/SVG for launch notes, PR comments, changelogs, docs, newsletters, support, sales, or landing pages. Do not use for screenshot upload-only requests unless the user is explicitly providing a source image.
 ---
 
 # PR Visual
 
 Screenshot Pop is the PR-to-launch-visual skill for coding agents. Use it to turn
-real product work into one publishable screenshot asset without asking the user
-to first prepare a screenshot.
+real product work into one publishable screenshot asset or a marketing bento
+without asking the user to first prepare the visual.
 
 ## Product Promise
 
@@ -19,7 +19,7 @@ The agent should:
 2. Identify the visible product surface that proves the change.
 3. Run, open, or inspect the app when practical.
 4. Capture the real UI state.
-5. Create one grounded visual with Screenshot Pop.
+5. Create one grounded visual or a 1-4 screenshot bento with Screenshot Pop.
 6. Return the image path or URL plus a short caption.
 7. When working in a PR workflow, offer to comment with the visual.
 
@@ -27,6 +27,8 @@ The agent should:
 
 - A PR needs a launch visual, changelog image, release-note graphic, or reviewer
   handoff.
+- A launch, landing page, social post, or sales deck needs a bento image from
+  1-4 product screenshots.
 - A UI, docs, onboarding, support, or product-marketing change has shipped and
   would be easier to understand visually.
 - The user asks for "promo material", "launch visual", "PR screenshot",
@@ -68,7 +70,14 @@ The agent should:
      Screenshot Pop.
    - Start with `start_pr_visual_job` for real renders, or `create_pr_visual`
      when the agent can wait for the full render.
+   - Use `start_bento_visual_job` or `create_bento_visual` when the user wants a
+     marketing bento or when 2-4 screenshots together tell the story better than
+     one callout image.
+   - For each bento screenshot, send a short `title`, optional `caption`, and
+     `highlightText` that appears visibly in the screenshot. Use an explicit
+     normalized `crop` only when the highlight is not text-identifiable.
    - Poll `get_pr_visual_job` until the job succeeds or fails.
+   - Poll `get_bento_visual_job` for bento renders.
    - Use hosted storage URLs when present.
    - Check quality metadata before publishing.
 
