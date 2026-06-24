@@ -9,6 +9,9 @@ The skill starts from the product work. The agent reads PR context locally,
 finds or captures the real UI state, then sends Screenshot Pop only a short
 user-visible summary plus the screenshot or screenshots. Do not send source
 code, raw diffs, file contents, or changed file lists to Screenshot Pop.
+For bento visuals, agents should prefer focused screenshots of the relevant
+HTML node, component, card, panel, modal, or section and send
+`captureKind: "html-node"` instead of sending a full-page screenshot.
 
 ## Install
 
@@ -44,9 +47,11 @@ After installing the skill and connecting MCP, ask:
 Use Screenshot Pop to create a launch-ready visual for the current PR. Read the
 PR and diff locally, identify the visible product change, run or inspect the
 app, capture the real UI, call start_pr_visual_job for one screenshot or
-start_bento_visual_job for a 1-4 screenshot marketing bento, and add a PR
-comment with the artifact URL and a one-sentence caption. Do not send source
-code, raw diffs, file contents, or changed file lists to Screenshot Pop.
+start_bento_visual_job for a 1-4 screenshot marketing bento. For bento, capture
+the relevant HTML node/component when possible and send captureKind:
+"html-node". Add a PR comment with the artifact URL and a one-sentence caption.
+Do not send source code, raw diffs, file contents, or changed file lists to
+Screenshot Pop.
 ```
 
 ## Included Skill

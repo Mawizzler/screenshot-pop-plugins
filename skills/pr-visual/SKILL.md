@@ -60,8 +60,11 @@ The agent should:
 3. Capture real evidence.
    - Use a real browser screenshot or user-provided product screenshot.
    - Do not recreate the app UI, invent data, or fabricate a product state.
-   - For bento visuals, capture clean product screenshots. Do not feed
-     previously annotated Screenshot Pop outputs back into the bento tool.
+   - For bento visuals, prefer focused screenshots of the relevant HTML node,
+     component, card, panel, modal, or section instead of a full-page screenshot.
+     In Playwright this can be a locator/element screenshot. In browser tools,
+     crop to the DOM node or selected component. Do not feed previously
+     annotated Screenshot Pop outputs back into the bento tool.
    - If the requested value moment is not visible, report source missing.
 
 4. Create the visual through Screenshot Pop MCP.
@@ -79,11 +82,14 @@ The agent should:
    - Use `start_bento_visual_job` or `create_bento_visual` when the user wants a
      marketing bento or when 2-4 screenshots together tell the story better than
      one callout image.
-   - For each bento screenshot, send a short `title`, optional `caption`, and
-     `highlightText` that appears visibly in the clean screenshot. Let
-     Screenshot Pop run OmniParser and crop the matching UI region. Use an
-     explicit normalized `crop` only when the target has no visible text or
-     the grounding metadata says the highlight was not found.
+   - For each focused bento screenshot, send a short `title`, optional
+     `caption`, and `captureKind: "html-node"` or
+     `captureKind: "focused-crop"`. Do not add `highlightText` when the
+     screenshot already is the highlight.
+   - Use `highlightText` only for full-page screenshots, so Screenshot Pop can
+     run OmniParser and crop the matching UI region. Use an explicit normalized
+     `crop` only when the target has no visible text or the grounding metadata
+     says the highlight was not found.
    - Poll `get_pr_visual_job` until the job succeeds or fails.
    - Poll `get_bento_visual_job` for bento renders.
    - Use hosted storage URLs when present.
