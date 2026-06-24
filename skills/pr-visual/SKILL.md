@@ -95,6 +95,9 @@ The agent should:
    - Read the PR/diff locally, then send only `prTitle`, `changeSummary`,
      optional `prUrl`, optional `targetSurface`, brand/channel fields, and the
      captured screenshot.
+   - Preserve user-selected visual background settings on every template:
+     pass `backgroundColor` for a solid canvas, or `backgroundGradient` with
+     2-4 hex stops plus optional `backgroundGradientDirection` for gradients.
    - Do not send source code, raw diffs, file contents, or changed file lists to
      Screenshot Pop.
    - Start with `start_pr_visual_job` for real renders, or `create_pr_visual`
