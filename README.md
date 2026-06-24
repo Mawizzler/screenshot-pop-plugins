@@ -2,8 +2,9 @@
 
 Screenshot Pop gives coding agents a PR visual skill: give the agent a pull
 request or completed product change, and get one grounded launch-ready product
-visual or a 1-4 screenshot bento for PR comments, changelogs, docs,
-newsletters, landing pages, support, or sales.
+visual, a 1-4 screenshot bento, or a 1200x630 feature OG image for PR comments,
+changelogs, docs, newsletters, landing pages, support, sales, or social/link
+previews.
 
 The skill starts from the product work. The agent reads PR context locally,
 finds or captures the real UI state, then sends Screenshot Pop only a short
@@ -19,6 +20,11 @@ Agents should inspect bento sources visually before cropping. Do not fabricate
 UI, choose sections by DOM order, or force weak/random crops into a bento. For
 each bento tile, choose a fitting Lucide `icon` such as `Bot`, `Camera`, `Crop`,
 `FileText`, `Globe`, `LayoutGrid`, `Megaphone`, `Rocket`, or `Workflow`.
+For feature OG images, agents should call `start_feature_og_image_job` or
+`create_feature_og_image` with one real screenshot, short `title`/`subtitle`
+copy, and either an explicit normalized `crop` or `targetText` for the main
+visible feature area. The result should be text plus a zoomed screenshot crop,
+not a fabricated UI mockup or annotated walkthrough.
 
 ## Install
 
@@ -54,20 +60,22 @@ After installing the skill and connecting MCP, ask:
 Use Screenshot Pop to create a launch-ready visual for the current PR. Read the
 PR and diff locally, identify the visible product change, run or inspect the
 app, capture the real UI, call start_pr_visual_job for one screenshot or
-start_bento_visual_job for a 1-4 screenshot marketing bento. For bento, capture
-the relevant HTML node/component when possible and send captureKind:
-"html-node" plus borderRadius from computed CSS when the node is rounded. Use
-targetText only for full-page screenshots that need OmniParser targeting.
-Inspect bento source screenshots visually before cropping; do not fabricate UI
-or choose sections by DOM order. For each bento tile, choose a fitting Lucide
-icon. Add a PR comment with the artifact URL and a one-sentence caption. Do not
-send source code, raw diffs, file contents, or changed file lists to Screenshot
-Pop.
+start_bento_visual_job for a 1-4 screenshot marketing bento, or
+start_feature_og_image_job for a 1200x630 feature OG/social preview image. For
+bento, capture the relevant HTML node/component when possible and send
+captureKind: "html-node" plus borderRadius from computed CSS when the node is
+rounded. Use targetText only for full-page screenshots that need OmniParser
+targeting. Inspect bento and OG source screenshots visually before cropping; do
+not fabricate UI or choose sections by DOM order. For each bento tile, choose a
+fitting Lucide icon. Add a PR comment with the artifact URL and a one-sentence
+caption. Do not send source code, raw diffs, file contents, or changed file
+lists to Screenshot Pop.
 ```
 
 ## Included Skill
 
 - `pr-visual`: turn a pull request, changelog item, docs update, or completed
-  product change into one launch-ready screenshot visual or marketing bento.
+  product change into one launch-ready screenshot visual, marketing bento, or
+  feature OG image.
 
 The skill lives at `skills/pr-visual/SKILL.md`.

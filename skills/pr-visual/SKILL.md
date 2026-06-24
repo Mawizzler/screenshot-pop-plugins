@@ -1,13 +1,13 @@
 ---
 name: pr-visual
-description: Use when Codex should turn a pull request, code diff, changelog item, completed UI change, docs update, or product release into one launch-ready product visual or a marketing bento from 1-4 screenshots. The agent should infer the visible product change from PR context, run or inspect the app when practical, capture the real UI state, and create a grounded Screenshot Pop PNG/SVG for launch notes, PR comments, changelogs, docs, newsletters, support, sales, or landing pages. Do not use for screenshot upload-only requests unless the user is explicitly providing a source image.
+description: Use when Codex should turn a pull request, code diff, changelog item, completed UI change, docs update, or product release into one launch-ready product visual, a marketing bento from 1-4 screenshots, or a 1200x630 feature OG/social image. The agent should infer the visible product change from PR context, run or inspect the app when practical, capture the real UI state, and create a grounded Screenshot Pop PNG/SVG for launch notes, PR comments, changelogs, docs, newsletters, support, sales, social previews, or landing pages. Do not use for screenshot upload-only requests unless the user is explicitly providing a source image.
 ---
 
 # PR Visual
 
 Screenshot Pop is the PR-to-launch-visual skill for coding agents. Use it to turn
-real product work into one publishable screenshot asset or a marketing bento
-without asking the user to first prepare the visual.
+real product work into one publishable screenshot asset, a marketing bento, or
+a feature OG image without asking the user to first prepare the visual.
 
 ## Product Promise
 
@@ -19,7 +19,8 @@ The agent should:
 2. Identify the visible product surface that proves the change.
 3. Run, open, or inspect the app when practical.
 4. Capture the real UI state.
-5. Create one grounded visual or a 1-4 screenshot bento with Screenshot Pop.
+5. Create one grounded visual, a 1-4 screenshot bento, or a feature OG image
+   with Screenshot Pop.
 6. Return the image path or URL plus a short caption.
 7. When working in a PR workflow, offer to comment with the visual.
 
@@ -29,6 +30,8 @@ The agent should:
   handoff.
 - A launch, landing page, social post, or sales deck needs a bento image from
   1-4 product screenshots.
+- A feature needs a 1200x630 Open Graph/link preview/social card with short
+  launch copy and one zoomed crop of the real UI.
 - A UI, docs, onboarding, support, or product-marketing change has shipped and
   would be easier to understand visually.
 - The user asks for "promo material", "launch visual", "PR screenshot",
@@ -100,6 +103,13 @@ The agent should:
    - Use `start_bento_visual_job` or `create_bento_visual` when the user wants a
      marketing bento or when 2-4 screenshots together tell the story better than
      one callout image.
+   - Use `start_feature_og_image_job` or `create_feature_og_image` when the user
+     wants an OG image, link preview image, social card, launch card, or feature
+     hero image. Send one real product screenshot, `title`, optional `subtitle`
+     and `eyebrow`, plus either an explicit normalized `crop` or `targetText`
+     for the feature's most important visible UI. The OG visual should be short
+     marketing text plus one cropped/zoomed screenshot, not an annotated
+     walkthrough.
    - For each focused bento screenshot, send a short `title`, optional
      `caption`, and `captureKind: "html-node"` or
      `captureKind: "focused-crop"`. Add a fitting Lucide `icon` for the feature
@@ -113,6 +123,7 @@ The agent should:
      is not available and the target has no visible text.
    - Poll `get_pr_visual_job` until the job succeeds or fails.
    - Poll `get_bento_visual_job` for bento renders.
+   - Poll `get_feature_og_image_job` for feature OG renders.
    - Use hosted storage URLs when present.
    - Check quality metadata before publishing.
 
