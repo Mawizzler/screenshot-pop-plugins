@@ -11,7 +11,10 @@ user-visible summary plus the screenshot or screenshots. Do not send source
 code, raw diffs, file contents, or changed file lists to Screenshot Pop.
 For bento visuals, agents should prefer focused screenshots of the relevant
 HTML node, component, card, panel, modal, or section and send
-`captureKind: "html-node"` instead of sending a full-page screenshot.
+`captureKind: "html-node"` instead of sending a full-page screenshot. When the
+captured node is rounded, also send its computed CSS `borderRadius` in pixels
+so the bento render keeps the same rounded corners. Full-page screenshots are a
+fallback: use `targetText` so OmniParser knows which detected UI region to crop.
 
 ## Install
 
@@ -49,9 +52,10 @@ PR and diff locally, identify the visible product change, run or inspect the
 app, capture the real UI, call start_pr_visual_job for one screenshot or
 start_bento_visual_job for a 1-4 screenshot marketing bento. For bento, capture
 the relevant HTML node/component when possible and send captureKind:
-"html-node". Add a PR comment with the artifact URL and a one-sentence caption.
-Do not send source code, raw diffs, file contents, or changed file lists to
-Screenshot Pop.
+"html-node" plus borderRadius from computed CSS when the node is rounded. Use
+targetText only for full-page screenshots that need OmniParser targeting. Add a
+PR comment with the artifact URL and a one-sentence caption. Do not send source
+code, raw diffs, file contents, or changed file lists to Screenshot Pop.
 ```
 
 ## Included Skill

@@ -65,6 +65,10 @@ The agent should:
      In Playwright this can be a locator/element screenshot. In browser tools,
      crop to the DOM node or selected component. Do not feed previously
      annotated Screenshot Pop outputs back into the bento tool.
+   - When the captured node has rounded corners, read its computed CSS
+     `border-radius` and pass the pixel value as `borderRadius` with that bento
+     screenshot. This keeps node screenshots from rendering as sharp rectangles
+     inside the bento card.
    - If the requested value moment is not visible, report source missing.
 
 4. Create the visual through Screenshot Pop MCP.
@@ -84,12 +88,12 @@ The agent should:
      one callout image.
    - For each focused bento screenshot, send a short `title`, optional
      `caption`, and `captureKind: "html-node"` or
-     `captureKind: "focused-crop"`. Do not add `highlightText` when the
-     screenshot already is the highlight.
-   - Use `highlightText` only for full-page screenshots, so Screenshot Pop can
-     run OmniParser and crop the matching UI region. Use an explicit normalized
-     `crop` only when the target has no visible text or the grounding metadata
-     says the highlight was not found.
+     `captureKind: "focused-crop"`. Add `borderRadius` for rounded nodes. Do
+     not add `targetText` when the screenshot already is the focused node.
+   - Use `targetText` only as a fallback for full-page screenshots. OmniParser
+     returns many UI regions; `targetText` tells Screenshot Pop which detected
+     region to choose. Use an explicit normalized `crop` only when node capture
+     is not available and the target has no visible text.
    - Poll `get_pr_visual_job` until the job succeeds or fails.
    - Poll `get_bento_visual_job` for bento renders.
    - Use hosted storage URLs when present.
