@@ -102,8 +102,11 @@ The agent should:
      one callout image.
    - For each focused bento screenshot, send a short `title`, optional
      `caption`, and `captureKind: "html-node"` or
-     `captureKind: "focused-crop"`. Add `borderRadius` for rounded nodes. Do
-     not add `targetText` when the screenshot already is the focused node.
+     `captureKind: "focused-crop"`. Add a fitting Lucide `icon` for the feature
+     or outcome, for example `Bot`, `Camera`, `Crop`, `FileText`, `Globe`,
+     `LayoutGrid`, `Megaphone`, `MessageSquare`, `Rocket`, `ShieldCheck`,
+     `Workflow`, or `Zap`. Add `borderRadius` for rounded nodes. Do not add
+     `targetText` when the screenshot already is the focused node.
    - Use `targetText` only as a fallback for full-page screenshots. OmniParser
      returns many UI regions; `targetText` tells Screenshot Pop which detected
      region to choose. Use an explicit normalized `crop` only when node capture
