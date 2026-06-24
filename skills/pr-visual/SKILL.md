@@ -1,13 +1,14 @@
 ---
 name: pr-visual
-description: Use when Codex should turn a pull request, code diff, changelog item, completed UI change, docs update, or product release into one launch-ready product visual, a marketing bento from 1-4 screenshots, or a 1200x630 feature OG/social image. The agent should infer the visible product change from PR context, run or inspect the app when practical, capture the real UI state, and create a grounded Screenshot Pop PNG/SVG for launch notes, PR comments, changelogs, docs, newsletters, support, sales, social previews, or landing pages. Do not use for screenshot upload-only requests unless the user is explicitly providing a source image.
+description: Use when Codex should turn a pull request, code diff, changelog item, completed UI change, docs update, or product release into one launch-ready product visual, a marketing bento from 1-4 screenshots, a 1200x630 feature OG/social image, or a vertical story slideshow. The agent should infer the visible product change from PR context, run or inspect the app when practical, capture the real UI state, and create a grounded Screenshot Pop PNG/SVG for launch notes, PR comments, changelogs, docs, newsletters, support, sales, social previews, or landing pages. Do not use for screenshot upload-only requests unless the user is explicitly providing a source image.
 ---
 
 # PR Visual
 
 Screenshot Pop is the PR-to-launch-visual skill for coding agents. Use it to turn
-real product work into one publishable screenshot asset, a marketing bento, or
-a feature OG image without asking the user to first prepare the visual.
+real product work into one publishable screenshot asset, a marketing bento, a
+feature OG image, or a vertical story slideshow without asking the user to first
+prepare the visual.
 
 ## Product Promise
 
@@ -19,8 +20,8 @@ The agent should:
 2. Identify the visible product surface that proves the change.
 3. Run, open, or inspect the app when practical.
 4. Capture the real UI state.
-5. Create one grounded visual, a 1-4 screenshot bento, or a feature OG image
-   with Screenshot Pop.
+5. Create one grounded visual, a 1-4 screenshot bento, a feature OG image, or a
+   story slideshow with Screenshot Pop.
 6. Return the image path or URL plus a short caption.
 7. When working in a PR workflow, offer to comment with the visual.
 
@@ -32,6 +33,8 @@ The agent should:
   1-4 product screenshots.
 - A feature needs a 1200x630 Open Graph/link preview/social card with short
   launch copy and one zoomed crop of the real UI.
+- A launch/social story needs 2-6 vertical slides where each frame explains one
+  step with either a full screenshot or a zoomed product crop.
 - A UI, docs, onboarding, support, or product-marketing change has shipped and
   would be easier to understand visually.
 - The user asks for "promo material", "launch visual", "PR screenshot",
@@ -110,6 +113,13 @@ The agent should:
      for the feature's most important visible UI. The OG visual should be short
      marketing text plus one cropped/zoomed screenshot, not an annotated
      walkthrough.
+   - Use `start_story_slideshow_job` or `create_story_slideshow` when the user
+     wants story socials, a vertical slideshow, or step-by-step social frames.
+     Send 2-6 real product screenshots in `slides`. Each slide should carry one
+     step with `title`, optional `body`, optional `stepLabel`, and
+     `screenshotMode: "full"` for context or `screenshotMode: "zoom"` with
+     `crop`/`targetText` for the important UI. The text explains the step; the
+     screenshot proves it.
    - For each focused bento screenshot, send a short `title`, optional
      `caption`, and `captureKind: "html-node"` or
      `captureKind: "focused-crop"`. Add a fitting Lucide `icon` for the feature
@@ -124,6 +134,7 @@ The agent should:
    - Poll `get_pr_visual_job` until the job succeeds or fails.
    - Poll `get_bento_visual_job` for bento renders.
    - Poll `get_feature_og_image_job` for feature OG renders.
+   - Poll `get_story_slideshow_job` for story slideshow renders.
    - Use hosted storage URLs when present.
    - Check quality metadata before publishing.
 
