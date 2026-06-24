@@ -60,6 +60,8 @@ The agent should:
 3. Capture real evidence.
    - Use a real browser screenshot or user-provided product screenshot.
    - Do not recreate the app UI, invent data, or fabricate a product state.
+   - For bento visuals, capture clean product screenshots. Do not feed
+     previously annotated Screenshot Pop outputs back into the bento tool.
    - If the requested value moment is not visible, report source missing.
 
 4. Create the visual through Screenshot Pop MCP.
@@ -70,12 +72,18 @@ The agent should:
      Screenshot Pop.
    - Start with `start_pr_visual_job` for real renders, or `create_pr_visual`
      when the agent can wait for the full render.
+   - Use `layoutStrategy: "safe-labels"` for an internal arrow explainer:
+     a lightweight visual addition that points at the new feature, function, or
+     next action. Keep labels short; the PR comment, docs, or launch copy should
+     carry the full explanation.
    - Use `start_bento_visual_job` or `create_bento_visual` when the user wants a
      marketing bento or when 2-4 screenshots together tell the story better than
      one callout image.
    - For each bento screenshot, send a short `title`, optional `caption`, and
-     `highlightText` that appears visibly in the screenshot. Use an explicit
-     normalized `crop` only when the highlight is not text-identifiable.
+     `highlightText` that appears visibly in the clean screenshot. Let
+     Screenshot Pop run OmniParser and crop the matching UI region. Use an
+     explicit normalized `crop` only when the target has no visible text or
+     the grounding metadata says the highlight was not found.
    - Poll `get_pr_visual_job` until the job succeeds or fails.
    - Poll `get_bento_visual_job` for bento renders.
    - Use hosted storage URLs when present.
