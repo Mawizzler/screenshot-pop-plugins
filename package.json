@@ -1,0 +1,29 @@
+{
+  "name": "@screenshot-pop/plugins",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Screenshot Pop agent skill and MCP plugin manifests.",
+  "license": "UNLICENSED",
+  "homepage": "https://screenshot-pop-az63vombma-ew.a.run.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mawizzler/screenshot-pop-plugins.git"
+  },
+  "keywords": ["screenshot-pop", "agent-skills", "mcp", "pull-requests", "launch-visuals"],
+  "files": [
+    ".agents",
+    ".claude-plugin",
+    ".codex-plugin",
+    ".cursor-plugin",
+    ".mcp.json",
+    "LICENSE",
+    "README.md",
+    "assets",
+    "skills"
+  ],
+  "scripts": {
+    "validate:skill": "python3 /Users/mali/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/pr-visual",
+    "validate:surface": "node scripts/validate-surface.mjs",
+    "validate": "npm run validate:skill && npm run validate:surface"
+  }
+}

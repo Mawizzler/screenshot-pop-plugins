@@ -1,0 +1,17 @@
+{
+  "name": "screenshot-pop",
+  "owner": {
+    "name": "Screenshot Pop",
+    "email": "support@screenshot-pop.dev"
+  },
+  "metadata": {
+    "description": "Turn PRs into launch-ready product visuals from real app surfaces."
+  },
+  "plugins": [
+    {
+      "name": "screenshot-pop",
+      "source": ".",
+      "description": "Turn PRs into launch-ready product visuals from real app surfaces."
+    }
+  ]
+}

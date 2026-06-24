@@ -1,0 +1,17 @@
+{
+  "name": "screenshot-pop",
+  "version": "0.1.0",
+  "description": "Turn PRs into launch-ready product visuals from real app surfaces.",
+  "author": {
+    "name": "Screenshot Pop",
+    "email": "support@screenshot-pop.dev"
+  },
+  "homepage": "https://screenshot-pop-az63vombma-ew.a.run.app",
+  "repository": "https://github.com/Mawizzler/screenshot-pop-plugins.git",
+  "license": "UNLICENSED",
+  "keywords": ["screenshot-pop", "agent-skills", "mcp", "pull-requests", "launch-visuals"],
+  "displayName": "Screenshot Pop",
+  "logo": "assets/logo.svg",
+  "skills": "./skills",
+  "mcpServers": "./.mcp.json"
+}

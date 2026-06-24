@@ -1,0 +1,23 @@
+{
+  "name": "screenshot-pop",
+  "version": "0.1.0",
+  "description": "Turn PRs into launch-ready product visuals from real app surfaces.",
+  "author": {
+    "name": "Screenshot Pop",
+    "email": "support@screenshot-pop.dev"
+  },
+  "homepage": "https://screenshot-pop-az63vombma-ew.a.run.app",
+  "repository": "https://github.com/Mawizzler/screenshot-pop-plugins.git",
+  "license": "UNLICENSED",
+  "keywords": ["screenshot-pop", "agent-skills", "mcp", "pull-requests", "launch-visuals"],
+  "skills": "./skills",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Screenshot Pop",
+    "shortDescription": "Turn PRs into launch-ready product visuals.",
+    "longDescription": "Give your coding agent a PR visual skill. The agent reads PR context locally, captures the real product UI, and uses Screenshot Pop MCP to create one grounded PNG/SVG plus a PR comment draft without sending source code, raw diffs, file contents, or changed file lists.",
+    "developerName": "Screenshot Pop",
+    "category": "Productivity",
+    "logo": "./assets/logo.svg"
+  }
+}
