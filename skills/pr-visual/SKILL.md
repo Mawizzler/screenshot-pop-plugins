@@ -98,6 +98,10 @@ The agent should:
    - Preserve user-selected visual background settings on every template:
      pass `backgroundColor` for a solid canvas, or `backgroundGradient` with
      2-4 hex stops plus optional `backgroundGradientDirection` for gradients.
+   - For portrait mobile screenshots in bento, feature OG, or story templates,
+     pass `deviceFrame: "auto"` or `deviceFrame: "iphone-minimal"`. This wraps
+     the real screenshot in a minimal phone frame. Do not fabricate UI inside
+     the device.
    - Do not send source code, raw diffs, file contents, or changed file lists to
      Screenshot Pop.
    - Start with `start_pr_visual_job` for real renders, or `create_pr_visual`
@@ -128,8 +132,9 @@ The agent should:
      `captureKind: "focused-crop"`. Add a fitting Lucide `icon` for the feature
      or outcome, for example `Bot`, `Camera`, `Crop`, `FileText`, `Globe`,
      `LayoutGrid`, `Megaphone`, `MessageSquare`, `Rocket`, `ShieldCheck`,
-     `Workflow`, or `Zap`. Add `borderRadius` for rounded nodes. Do not add
-     `targetText` when the screenshot already is the focused node.
+     `Workflow`, or `Zap`. Add `borderRadius` for rounded nodes. Add
+     `deviceFrame: "auto"` when the source is a portrait mobile app screenshot.
+     Do not add `targetText` when the screenshot already is the focused node.
    - Use `targetText` only as a fallback for full-page screenshots. OmniParser
      returns many UI regions; `targetText` tells Screenshot Pop which detected
      region to choose. Use an explicit normalized `crop` only when node capture

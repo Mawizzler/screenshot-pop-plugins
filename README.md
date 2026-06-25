@@ -29,6 +29,10 @@ For story slideshows, agents should call `start_story_slideshow_job` or
 `create_story_slideshow` with 2-6 real screenshots. Each slide should describe
 one step and use `screenshotMode: "full"` for context or
 `screenshotMode: "zoom"` with `crop`/`targetText` for the important action area.
+For portrait mobile screenshots in bento, feature OG, or story templates, pass
+`deviceFrame: "auto"` or `deviceFrame: "iphone-minimal"` so Screenshot Pop wraps
+the real screenshot in a minimal phone frame. Do not fabricate app UI inside a
+device mockup.
 All template tools accept user-selected background controls. Pass
 `backgroundColor` for a solid canvas, or `backgroundGradient` with 2-4 hex color
 stops and optional `backgroundGradientDirection` when the user specifies a
@@ -77,8 +81,10 @@ only for full-page screenshots that need OmniParser targeting. Inspect bento,
 OG, and story source screenshots visually before cropping; do not fabricate UI
 or choose sections by DOM order. For each bento tile, choose a fitting Lucide
 icon. If the user selected a background color or gradient, pass it as
-backgroundColor or backgroundGradient/backgroundGradientDirection. Add a PR
-comment with the artifact URL and a one-sentence caption. Do not
+backgroundColor or backgroundGradient/backgroundGradientDirection. If the source
+is a portrait mobile screenshot, pass deviceFrame: "auto" or
+deviceFrame: "iphone-minimal". Add a PR comment with the artifact URL and a
+one-sentence caption. Do not
 send source code, raw diffs, file contents, or changed file lists to Screenshot
 Pop.
 ```
