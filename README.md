@@ -10,6 +10,10 @@ The skill starts from the product work. The agent reads PR context locally,
 finds or captures the real UI state, then sends Screenshot Pop only a short
 user-visible summary plus the screenshot or screenshots. Do not send source
 code, raw diffs, file contents, or changed file lists to Screenshot Pop.
+Do not use agent-authored HTML, throwaway demo pages, synthetic fixtures, or
+recreated product UI as source material for publishable visuals. If no real
+browser or user-provided product screenshot exists, report source missing
+instead of making a polished fake.
 For bento visuals, agents should prefer focused screenshots of the relevant
 HTML node, component, card, panel, modal, or section and send
 `captureKind: "html-node"` instead of sending a full-page screenshot. When the
@@ -79,8 +83,9 @@ relevant HTML node/component when possible and send captureKind: "html-node"
 plus borderRadius from computed CSS when the node is rounded. Use targetText
 only for full-page screenshots that need OmniParser targeting. Inspect bento,
 OG, and story source screenshots visually before cropping; do not fabricate UI
-or choose sections by DOM order. For each bento tile, choose a fitting Lucide
-icon. If the user selected a background color or gradient, pass it as
+or choose sections by DOM order. Do not create custom HTML/CSS, local fixture
+pages, or recreated UI as source screenshots. For each bento tile, choose a
+fitting Lucide icon. If the user selected a background color or gradient, pass it as
 backgroundColor or backgroundGradient/backgroundGradientDirection. If the source
 is a portrait mobile screenshot, pass deviceFrame: "auto" or
 deviceFrame: "iphone-minimal". Add a PR comment with the artifact URL and a

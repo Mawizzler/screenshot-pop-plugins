@@ -47,6 +47,9 @@ The agent should:
 - The task is text-only and no visual product surface changed.
 - The app cannot be run or inspected and no reliable screenshot/source exists.
 - The requested state is not visible in the captured UI.
+- The only available source would be agent-authored HTML, a throwaway demo page,
+  a synthetic fixture, or a recreated mock of the product UI. Ask for or capture
+  a real product/site screenshot instead.
 - The visual would expose secrets, credentials, private customer data, tokens,
   billing details, admin-only data, or unnecessary personal information.
 - The user explicitly says not to create a visual.
@@ -65,7 +68,12 @@ The agent should:
 
 3. Capture real evidence.
    - Use a real browser screenshot or user-provided product screenshot.
-   - Do not recreate the app UI, invent data, or fabricate a product state.
+   - Do not recreate the app UI, invent data, fabricate a product state, or
+     write custom HTML/CSS just to produce a nicer-looking source screenshot.
+   - Never present synthetic fixtures, local mock pages, Storybook-only
+     recreations, or agent-designed HTML as "real screenshots" or example
+     product material. Test fixtures are acceptable only for automated renderer
+     checks and must be labeled as such.
    - For bento visuals, prefer focused screenshots of the relevant HTML node,
      component, card, panel, modal, or section instead of a full-page screenshot.
      In Playwright this can be a locator/element screenshot. In browser tools,
